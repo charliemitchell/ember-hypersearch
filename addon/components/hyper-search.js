@@ -46,6 +46,7 @@ export default Component.extend({
   debounceRate: 0,
   endpoint: null,
   resultKey: null,
+  resultsArray: null,
   placeholder: null,
   resultsAreVisible: false,
   resultJoiner : ', ',
@@ -120,6 +121,13 @@ export default Component.extend({
         method: 'GET',
         url: get(this, 'endpoint'),
         data: { q: query }
+      })
+      .then(results => {
+        if (get(this, 'resultsArray')) {
+          results = results[get(this, 'resultsArray')];
+        }
+        console.log(results);
+        return results;
       })
       .then(resolve, reject);
     });
