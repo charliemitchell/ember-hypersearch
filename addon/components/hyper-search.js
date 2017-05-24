@@ -47,11 +47,14 @@ export default Component.extend({
   endpoint: null,
   resultKey: null,
   placeholder: null,
+  resultsAreVisible: false,
+  resultJoiner : ', ',
 
   init() {
     this._super(...arguments);
     this._cache = {};
     this.results = emberArray();
+    this.set('register-as', this);
   },
 
   willDestroyElement() {
@@ -86,6 +89,7 @@ export default Component.extend({
 
   fetch(query) {
     if (isBlank(query) || (query.length < get(this, 'minQueryLength'))) {
+      this.set('results', []);
       return reject();
     }
 
@@ -146,13 +150,33 @@ export default Component.extend({
     }
   },
 
+  resultsAreAvailable : Ember.computed('results', function () {
+    return get(this, 'results').length > 0;
+  }),
+
+  formatResult(result) {
+    return this.get('resultKeys').map(key => get(result, key)).join(get(this, 'resultJoiner'));
+  },
+
   actions: {
+
+    clear () {
+      this.set('results', emberArray());
+    },
+
     search(_event, query) {
       debounce(this, '_search', query, get(this, 'debounceRate'), true);
     },
 
     selectResult(result) {
       this._handleAction('selectResult', result);
+      if (this.get('clearOnSelect')) {
+        this.set('results', emberArray());
+      }
+    },
+
+    toggleResults () {
+      this.toggleProperty('resultsAreVisible');
     }
   }
 });

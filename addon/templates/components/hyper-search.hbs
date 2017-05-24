@@ -9,19 +9,26 @@
         placeholder=placeholder
         update=(action "search")
         autocomplete="off"
+        onblur=(action 'clear')
     }}
-    <ul class="hypersearch-results">
-      {{#each results as |result|}}
-        <li class="hypersearch-result">
-          <span {{action "selectResult" result on="click"}}>
-            {{#if resultKey}}
-              {{get result resultKey}}
-            {{else}}
-              {{result}}
-            {{/if}}
-          </span>
-        </li>
-      {{/each}}
-    </ul>
+    {{#if resultsAreAvailable}}
+      <ul class="hypersearch-results">
+        {{#each results as |result|}}
+          <li class="hypersearch-result" {{action "selectResult" result on="mouseDown"}}>
+            <span>
+              {{#if resultKey}}
+                {{get result resultKey}}
+              {{else}}
+                {{#if resultKeys}}
+                  {{formatResult resultKeys result resultJoiner}}
+                {{else}}
+                  {{result}}
+                {{/if}}
+              {{/if}}
+            </span>
+          </li>
+        {{/each}}
+      </ul>
+    {{/if}}
   </form>
 {{/if}}
