@@ -49,7 +49,6 @@ export default Component.extend({
   resultsArray: null,
   placeholder: null,
   resultsAreVisible: false,
-  resultJoiner : ', ',
 
   init() {
     this._super(...arguments);
@@ -126,7 +125,6 @@ export default Component.extend({
         if (get(this, 'resultsArray')) {
           results = results[get(this, 'resultsArray')];
         }
-        console.log(results);
         return results;
       })
       .then(resolve, reject);
@@ -161,10 +159,6 @@ export default Component.extend({
   resultsAreAvailable : Ember.computed('results', function () {
     return get(this, 'results').length > 0;
   }),
-
-  formatResult(result) {
-    return this.get('resultKeys').map(key => get(result, key)).join(get(this, 'resultJoiner'));
-  },
 
   actions: {
 

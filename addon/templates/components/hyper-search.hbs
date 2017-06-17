@@ -17,10 +17,10 @@
           <li class="hypersearch-result" {{action "selectResult" result on="mouseDown"}}>
             <span>
               {{#if resultKey}}
-                {{get result resultKey}}
+                {{formatResult format (get result resultKey) }}
               {{else}}
-                {{#if resultKeys}}
-                  {{formatResult resultKeys result resultJoiner}}
+                {{#if format}}
+                  {{formatResult format result}}
                 {{else}}
                   {{result}}
                 {{/if}}
