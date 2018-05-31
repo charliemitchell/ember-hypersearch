@@ -46,7 +46,7 @@
     "ember-addon"
   ],
   "dependencies": {
-    "ember-cli-babel": "^5.1.5",
+    "ember-cli-babel": "^6.11.0",
     "ember-cli-htmlbars": "^1.0.1",
     "ember-one-way-controls": "^1.1.2"
   },
