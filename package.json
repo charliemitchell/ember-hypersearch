@@ -1,6 +1,6 @@
 {
   "name": "ember-hypersearch",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Hyperspeed real-time search with caching",
   "directories": {
     "doc": "doc",
@@ -48,7 +48,7 @@
   "dependencies": {
     "ember-cli-babel": "^6.11.0",
     "ember-cli-htmlbars": "^1.0.1",
-    "ember-one-way-controls": "^1.1.2"
+    "ember-one-way-controls": "3.1.0"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
